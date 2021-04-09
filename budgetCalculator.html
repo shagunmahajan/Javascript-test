@@ -1,0 +1,253 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Webpage">
+    <meta name="keywords" content="HTML,CSS,Javascript">
+    <meta name="author" content="Shagun">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+</head>
+
+<body>
+    <!-- Main window -->
+    <div class="mainWindow">
+        <section id="section">
+            <h1 class="text-center">Budget Calculator</h1>
+            <div class="panel panel-default">
+                <div class="panel-body container">
+                    <ul class="list-group">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Budget
+                            <span class="badge badge-primary badge-pill" data-index="0"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Expenses
+                            <span class="badge badge-primary badge-pill" data-index="1"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Balance
+                            <span class="badge badge-primary badge-pill" data-index="2"></span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            Savings
+                            <span class="badge badge-primary badge-pill" data-index="3"></span>
+                        </li>
+                    </ul>
+                    <div class="row">
+                        <button id="modifyBudget-btn" class="btn btn-primary" type="button"><strong>Modify
+                                Budget</strong></button>
+                        <button id="addExpenses-btn" class="btn btn-primary" type="button"><strong>Add
+                                Expense</strong></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Monthly income modal -->
+        <form id="monthlyIncomeModal" class="modal modal-open">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                <div class="modal-content ">
+                    <div class="modal-header">
+                        <h3 class="text-center">Provide Monthly Income and Date for budget calculation</h3>
+                    </div>
+                    <div class="modal-body">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="form-group task-input-container">
+                                    <label for="monthlyIncome">Monthly Income:</label>
+                                    <input id="monthlyIncome" class="form-control" type="text" placeholder="Rs. 0"
+                                        required />
+                                    <p id="monthlyIncomeErr" class="text-danger"></p>
+                                </div>
+                                <div class="form-group">
+                                    <label for="dateInput">Budget Ending Date:</label>
+                                    <input id="dateInput" class="form-control" type="datetime-local" required />
+                                    <p id="dateInputErr" class="text-danger"></p>
+                                </div>
+                                <!-- <button id="submit-btn" class="form-control btn-primary"><strong>Submit</strong></button> -->
+                                <button id="submit-btn" class="btn btn-primary"
+                                    type="submit"><strong>Submit</strong></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Modify Budget Modal -->
+        <form id="modifyBudgetModal" class="modal modal-open" name="modifyBudgetModal">
+            <div class="modal-content modal-dialog">
+                <div class="modal-header">
+                    <span class="close">&times;</span>
+                    <h2 class="text-center">ModifyBudget</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="form-group task-input-container">
+                                <input id="modifyBudgetInput" class="form-control" type="text" placeholder="Rs. 0"
+                                    required />
+                                <p id="modifyBudgetErr" class="text-danger"></p>
+                            </div>
+                            <button id="submitBudget-btn" class="btn btn-primary" type="submit"><strong>Submit
+                                    Budget</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+        <!-- Add expenses modal -->
+        <form id="addExpensesModal" class="modal modal-open">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <div class="modal-header">
+                            <span class="close">&times;</span>
+                            <h3 class="text-center">Add Monthly Expenses</h3>
+                        </div>
+                        <div class="modal-body">
+                            <h4 id="budgetValueDisplay" class="text-primary"></h4>
+                            <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="form-group">
+                                        <label for="select-expense-type">Select Type of Expense:</label>
+                                        <select id="select-expense-type" onchange="showExpenseContent()"
+                                            class="form-control">
+                                            <option value="" disabled selected>Choose your option</option>
+                                            <option value="fixed">Fixed Expenses</option>
+                                            <option value="variable">Variable Expenses</option>
+                                        </select>
+                                    </div>
+                                    <div id="fixedExpenseData" style="display: none">
+                                        <div class="form-group">
+                                            <select id="select-fixed-expense-type" class="form-control" required>
+                                                <option value="" disabled selected>Select Fixed Expense</option>
+                                                <option value="Rent">Rent</option>
+                                                <option value="EMI">EMI</option>
+                                                <option value="Grocery">Grocery</option>
+                                                <option value="Bills">Bills</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div id="variableExpenseData" style="display: none">
+                                            <div class="form-group">
+                                                <input id="expenseName" class="form-control" type="text"
+                                                    placeholder="Expense Name" required>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <div id="expenseData" class="row" style="display: none">
+                                                <div class="form-group col-xs-6">
+                                                    <input id="expenseAmount" class="form-control" type="text"
+                                                        placeholder="Rs. 0" required>
+                                                </div>
+                                                <div class="form-group col-xs-6">
+                                                    <input id="dateOfExpense" class="form-control" type="date" required
+                                                        value="" />
+                                                </div>
+                                                <p id="ExpenseErr" class="text-danger col-xs-6"
+                                                    style="text-justify:unset">
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <button id="addVariousExpense-btn" class="btn btn-primary "
+                                        onclick="createExpenseTable()" style="display: none" type="button"><strong>Add
+                                            Expenses</strong></button>
+                                </div>
+                                <div id="totalExpense" class="row justify-content-center border rounded-pill">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="height: 271px; overflow: hidden;">
+                            <table id="addExpenseTable" class="table table-bordered table-hover table-responsive">
+                                <thead>
+                                    <tr>
+                                        <td>#</td>
+                                        <td>Expense</td>
+                                        <td>Amount
+                                        </td>
+                                        <td>Date of Expense</td>
+                                        <td>Delete</td>
+                                        <td>Edit</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <p id="noRecords" class="text-secondary">No Records to display</p>
+
+                        </div>
+
+                        <button id="viewAllExpenses-btn" class="btn btn-primary justify-content-center"
+                            style="display: none" onclick="showAllExpenses()" type="button"><strong>View
+                                All</strong></button>
+
+                        <div class="container" style="margin-top: 10px;">
+                            <div>
+                                <span class="label label-primary">Time left For Budget Expiration</span>
+                            </div>
+                            <div class="row justify-content-center border rounded-pill form-group" id="countdown">
+
+                                <div>
+                                    <span id="days"></span>
+                                    <div>Days</div>
+                                </div>
+                                <div>
+                                    <span id="hours"></span>
+                                    <div>Hours</div>
+                                </div>
+                                <div>
+                                    <span id="minutes"></span>
+                                    <div>Minutes</div>
+                                </div>
+                                <div>
+                                    <span id="seconds"></span>
+                                    <div>Seconds</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </form>
+
+    <form id="showAllExpensesModal" class="modal modal-open">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="text-center">All Expenses</h2>
+                </div>
+                <div class="modal-body">
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <table id="listAllExpenseTbl" class="table table-bordered table-hover table-responsive">
+                            </table>
+                            <span id="updateAmountErr" class="text-danger col-xs-12"></span>
+                            <div class="btn-group">
+                                <button id="saveExpenseAmount-btn" class="btn btn-primary" style="display:none"
+                                    type="button" onclick="updateExpense()">Save
+                                    Expense</button>
+                                <button id="deleteExpense-btn" class="btn btn-primary" style="display:none"
+                                    type="button" onclick="deleteMultipleExpense()">Delete
+                                    Expense</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    </div>
+    <script class="source" src="script.js" type="text/javascript"></script>
+
+</body>
+
+</html>

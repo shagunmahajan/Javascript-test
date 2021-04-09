@@ -1,0 +1,61 @@
+.mainWindow{
+  height: 100%;
+  overflow: auto;
+}
+
+.modal{
+  background-image: url("background.jpg");
+  background-repeat: no-repeat;
+background-size: 100% 100%;
+position: unset;
+overflow: auto ;
+} 
+
+form{
+  overflow: auto;
+  position: unset;
+}
+
+tr{    
+  height: 45px;
+}
+
+tr:nth-child(even) { 
+  background-color: lightgrey;
+  color: blue;
+} 
+
+thead{
+  background-color: rgb(99, 97, 97);
+  color: white;
+}
+
+#addExpenseTable td:first-child,
+#addExpenseTable th:first-child, 
+#addExpenseTable td:last-child,
+#addExpenseTable th:last-child  { 
+  display: none; 
+}
+
+#countdown{
+	display: inline-block;
+	text-align: center;
+}
+
+#countdown > div{
+  margin-left:auto;
+	display: inline-block;
+}
+
+#countdown div > span{
+  display: inline-block; 
+  margin: 10px 20px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px;
+  font-size: 20px;
+  background: rgb(5, 115, 179);
+  color: rgb(248, 241, 241);
+}
+
+
