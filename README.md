@@ -1,58 +1,48 @@
-Application is about budget calculation based on monthly income, budget and user expenses
+# Budget Calculator
+This Application is designed using Javascript, CSS and HTML
 
-ON launch user will be displayed with monthly income modal 
-Monthly Income modal -
-    User can't access the application without providing the valid date in the monthly income modal
-    user need to provide valid monthly income and budget ending date
-    Budget ending should be greater than today's date
+## Ground Rules
+* Monthly Income modal.
+    * User can't access the application without providing the valid date in the monthly income modal.
+    * User need to provide valid monthly income and budget ending date.
+    * Budget ending should be greater than today's date.
 
-After providing valid data, main screen will be displayed with Budget, savings, expense and balance, modify budget button and add expenses button
-    Default value of budget is 20% of the monthly income. User can change it using modify budget button
-    expense can be fixed or variable, default value is 0
-    savings is calculated based on expense till now and monthly income
-    balance is different between budget and  expenses 
-    
-Modify Budget modal will be opened when clicked on modify budget button
-    User can modify budget value usin this modal    
+* Main Screen - Contains Budget, savings, expense and balance details. It has modify budget button and add expenses button to modify budget and add expenses resp.
+    * Default value of budget is 20% of the monthly income. User can change it by using modify budget button.
+    * Expense can be fixed or variable, default value is 0.
+    * Savings is calculated based on expenses added and monthly income.
+    * Balance is different between budget and expenses.
 
-Add expense button will open add expense modal  having form to add expenses and to displayed countdown to budget ending date
-    user can add various modal  
-    select type of expenses and then provide valid data
-    for fixed expense there are further sub categories that can be selected by user
-    Fixed expenses can't be deleted once added but can be modified
-    variable expenses can be deleted/updated once added
-    at a time only 5 expense will be displayed
-    if there are more than 5 expenses then view all button will be displayed
-    clicking on view all will open list of all expenses
+* Modify Budget modal.
+    * User can modify budget value using this modal.
 
-List of all expenses modal-
-    user can modify/delete various expense using edit and save button
-    user can delete multiple using checkbox and delete button
-    values added here will be updated across the Application
-    User can close this modal only with Escape key
-    
+* Add expense Modal - Contains list of expenses added(upto 5) and countdown to budget ending date.
+    * User can add various expenses.
+    * Select type of expenses and then provide valid data.
+    * For fixed expense there are further sub categories that can be selected.
+    * Fixed expenses can't be deleted once added but can be modified.
+    * Variable expenses can be deleted/updated once added.
+    * At a time only 5 expense will be displayed.
+    * If there are more than 5 expenses then view all button will be displayed.
+    * Clicking on view all will open list of all expenses.
 
+* All Expenses modal - Contains list of all expenses.
+    * User can modify/delete various expense using edit and save button.
+    * User can delete multiple expenses using checkbox and delete button.
+    * Values added here will be updated across the Application.
+    * User can close this modal only with Escape key.
 
+## Coding Part
+##### Styling
+* Bootstrap 3 CSS file has been used for standard styling.
+* styles.css file has been used to add extra styling to modal, table and other elements.
 
+##### Image
+* Background.jpg image has been used to cover main screen content when modal in visible on screen.
 
+##### HTML file 
+* This file has all the elements like modal, table, list, etc.
 
-
-
-
-
-
-
-
-
-Coding Part:
-Styling:
-Bootstrap 3 CSS file has been used for standard styling
-styles.css file has been used to add extra styling to modal and table
-
-image:
-Background.jpg image has been used to cover main screen content when modal in visible on screen
-
-budgetCalculator.html file has all the elements like modal, table, list 
-
-script.js has all the functions and validations for various field based on user input
-Also script.js has countdown value based on budget ending date to notify user
+##### JS file
+* This file has all the functions and validations for various field based on user input.
+* Also script.js has countdown value based on budget ending date to notify user.
