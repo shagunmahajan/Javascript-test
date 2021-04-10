@@ -1,6 +1,5 @@
 .mainWindow{
   height: 100%;
-  overflow: auto;
 }
 
 .modal{
@@ -10,6 +9,12 @@ background-size: 100% 100%;
 position: unset;
 overflow: auto ;
 } 
+
+.modal-content {
+  max-height: 95%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
 
 form{
   overflow: auto;
