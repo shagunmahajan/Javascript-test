@@ -62,5 +62,15 @@ thead{
   background: rgb(5, 115, 179);
   color: rgb(248, 241, 241);
 }
+#watermark
+{
+ position:fixed;
+ bottom:20px;
+ right:20px;
+ opacity:0.5;
+ z-index:99;
+ font-weight: bold;
+ color:black;
+}
 
 
